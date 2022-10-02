@@ -7,15 +7,19 @@
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Registrasi!</h1>
                         </div>
                         <form class="user" method="POST" action="<?= base_url('auth/registration'); ?>">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" placeholder="Full Nme" value="<?= set_value('name'); ?>">
+                                <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nama lengkap" value="<?= set_value('name'); ?>">
                                 <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" value="<?= set_value('email'); ?>">
+                                <input type="text" name="nik" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nomor Induk Kependudukan" value="<?= set_value('nik'); ?>">
+                                <?= form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Alamat email" value="<?= set_value('email'); ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class=" form-group row">
@@ -24,7 +28,7 @@
                                     <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="password" name="password2" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    <input type="password" name="password2" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Ulangi Password">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">

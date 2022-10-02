@@ -8,11 +8,32 @@ class Auth extends CI_Controller
     }
     public function index()
     {
-        $data['title'] = 'Login page';
-        $this->load->view('templats/auth_header', $data);
-        $this->load->view('auth/login');
-        $this->load->view('templats/auth_footer');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
+            'required' => 'Email wajib di isi !!',
+            'valid_email' => 'Email tidak valid !'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Login page';
+            $this->load->view('templats/auth_header', $data);
+            $this->load->view('auth/login');
+            $this->load->view('templats/auth_footer');
+        } else {
+            $this->_login();
+        }
     }
+
+    private function _login()
+    {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+        var_dump($user);
+        die;
+    }
+
     public function registration()
     {
         // valdasi form 
@@ -20,7 +41,7 @@ class Auth extends CI_Controller
             'name', //<---------------------------------< nama form
             'Name', //<---------------------------------< alias
             'required|trim', //<------------------------< rule Validai
-            ['required' => 'Nama wajib diisi !!',] // <-< Custom pesan kesalaha 
+            ['required' => 'Username wajib diisi !!',] // <-< Custom pesan kesalaha 
         );
         $this->form_validation->set_rules(
             'email',
@@ -28,8 +49,21 @@ class Auth extends CI_Controller
             'required|trim|valid_email|is_unique[user.email]',
             [
                 // pesan kesalahan
-                'required' => 'Email wajib di isi !!',
+                'required' => 'Email wajib di isi !',
                 'valid_email' => 'Email tidak valid !',
+                'is_unique' => 'Email sudah terdaftar !'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nik',
+            'NIK',
+            'required|trim|numeric|max_length[16]|min_length[16]|is_unique[penduduk.nik]',
+            [
+                // pesan kesalahan
+                'required' => 'NIK wajib di isi !!',
+                'min_length' => 'Panjang NIK minimal 16 angaka!',
+                'max_length' => 'Panjang NIK maximal 16 angaka!',
+                'numeric' => 'Hanya boleh diisi dengan angka',
                 'is_unique' => 'Email sudah terdaftar !'
             ]
         );
@@ -47,8 +81,9 @@ class Auth extends CI_Controller
             $this->load->view('auth/registration');
             $this->load->view('templats/auth_footer');
         } else {
-            $data = [
-                'name' => $this->input->POST('name', true),
+
+            $this->input->post('nik');
+            $data1 = [
                 'email' => $this->input->POST('email', true),
                 'image' => "default.jpg",
                 'password' => password_hash($this->input->POST('password1'), PASSWORD_DEFAULT),
@@ -56,7 +91,18 @@ class Auth extends CI_Controller
                 'is_active' => 1,
                 'date_created' => time()
             ];
-            $this->db->insert('user', $data);
+            $data2 = [
+                'nama' => $this->input->POST('name', true),
+                'nik' => $this->input->POST('nik', true),
+                'tgl_lahir' => 'lahir',
+                'agama' => '-',
+                'kewarganegaraan' => 'indonesia',
+                'pekerjaan' => '-',
+                'alamat' => '-'
+            ];
+
+            $this->db->insert('user', $data1);
+            $this->db->insert('penduduk', $data2);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Selamat registrasi akun anda Sukses. Silahkan Login!</div>');
             redirect('auth');
