@@ -1,22 +1,39 @@
-<h1 class="h3 mb-4 text-gray-800">Beranda / 404::Note Found</h1>
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
+<!--image slider-->
+<div class="container_slide">
+    <div class="slider">
+        <div class="slides">
+            <!--radio buttons-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <!--slide images-->
+            <div class="slide first">
+                <img src="<?= base_url('assets/img/berita/1.jpg'); ?>" alt="">
+            </div>
+            <div class="slide">
+                <img src="<?= base_url('assets/img/berita/2.jpg'); ?>" alt="">
+            </div>
+            <div class="slide">
+                <img src="<?= base_url('assets/img/berita/3.jpg'); ?>" alt="">
+            </div>
+            <div class="slide">
+                <img src="<?= base_url('assets/img/berita/4.jpg'); ?>" alt="">
+            </div>
+            <!--automatic navigation-->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+        <!--manual navigation-->
+        <div class="navigation-manual">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
