@@ -71,10 +71,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Pilih Surat:</h6>
-                        <a class="collapse-item" href="">Ket. Domisili</a>
-                        <a class="collapse-item" href="">Ket. Tidak Mampu</a>
-                        <a class="collapse-item" href="">Ket. Usaha</a>
-                        <a class="collapse-item" href="">Izin Keramaian</a>
+                        <a class="collapse-item" href="<?= base_url("penduduk/surat/skd"); ?>">Ket. Domisili</a>
+                        <a class="collapse-item" href="<?= base_url("penduduk/surat/sktm"); ?>">Ket. Tidak Mampu</a>
+                        <a class="collapse-item" href="<?= base_url("penduduk/surat/sku"); ?>">Ket. Usaha</a>
+                        <a class="collapse-item" href="<?= base_url("penduduk/surat/sik"); ?>">Izin Keramaian</a>
                     </div>
                 </div>
 
@@ -92,11 +92,17 @@
             <div class="sidebar-heading">
                 User
             </div>
-            <!-- Nav Item - Beranda -->
+            <!-- Nav Item - User -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('penduduk/profile'); ?>">
                     <i class="fa-solid fa-user"></i>
                     <span>Profile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('pengajuan'); ?>">
+                    <i class="fa-solid fa-share-from-square"></i>
+                    <span>Pengajuan</span>
                 </a>
             </li>
 
