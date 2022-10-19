@@ -2,9 +2,20 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Pengajuan extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Penduduk_model');
+    }
+
     public function index()
     {
         $data['judul'] = 'Pengajuan';
+        // $data['pengajuan'] = $this->Penduduk_model->join();
+
+        // var_dump($data);
+        // die;
+
         $this->load->view('penduduk/header', $data);
         $this->load->view('penduduk/pengajuan/table_pengajuan', $data);
         $this->load->view('penduduk/footer');
